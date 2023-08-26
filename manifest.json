@@ -1,0 +1,50 @@
+{
+	"format_version": 2,
+	"header": {
+		"name": "Blazed Anti-Cheat",
+		"description": "This pack was made by iBlqzed",
+		"min_engine_version": [
+			1,
+			19,
+			0
+		],
+		"uuid": "64aef1cc-ceb0-4ac9-9c70-14f053d96bce",
+		"version": [
+			1,
+			0,
+			2
+		]
+	},
+	"modules": [
+		{
+			"type": "data",
+			"uuid": "3ab620c5-91c7-4d26-8c7a-f808966973f5",
+			"version": [
+				1,
+				0,
+				0
+			]
+		},
+		{
+			"language": "javascript",
+			"type": "script",
+			"uuid": "a657103f-c4c8-46e2-a652-56beb15845fa",
+			"version": [
+				1,
+				0,
+				0
+			],
+			"entry": "index.js"
+		}
+	],
+	"dependencies": [
+		{
+			"module_name": "@minecraft/server",
+			"version": "1.4.0-beta"
+		},
+		{
+			"module_name": "@minecraft/server-ui",
+			"version": "1.2.0-beta"
+		}
+	]
+}
