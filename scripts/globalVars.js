@@ -97,6 +97,9 @@ export const config = {
                     flags: 16
                 }
             },
+            data: {
+                messagesIn3Seconds: 5
+            },
             admin: true
         }
     }),

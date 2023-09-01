@@ -78,7 +78,7 @@ const argTypes = {};
 world.beforeEvents.chatSend.subscribe(ev => {
 	if (!ev.message.startsWith(config.commandPrefix))
 		return;
-	if (ev.cancel) ev.cancel = true
+	ev.cancel = true
 	const player = ev.sender;
 	const [name, ...args] = ev.message.slice(config.commandPrefix.length).trim().split(/\s+/g);
 	//@ts-ignore
@@ -164,7 +164,7 @@ addArgument("boolean", (nextArg, args) => {
 });
 addArgument("player", (nextArg, args, player) => {
 	if (!nextArg.startsWith('"')) {
-		const target = world.getPlayers({ name: nextArg })[0];
+		const target = world.getPlayers({ name: nextArg[0] === "@" ? nextArg.slice(1) : nextArg })[0];
 		if (target)
 			return [target, args];
 	}
@@ -172,7 +172,7 @@ addArgument("player", (nextArg, args, player) => {
 	while (currentArg) {
 		result += " " + currentArg;
 		if (result.endsWith('"')) {
-			const target = world.getPlayers({ name: result.slice(2, -1) })[0];
+			const target = world.getPlayers({ name: result[2] === "@" ? result.slice(3, -1) : result.slice(2, -1) })[0];
 			if (target)
 				return [target, args];
 			break;

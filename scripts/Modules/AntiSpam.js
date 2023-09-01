@@ -10,6 +10,12 @@ export default {
 			player.messages.push(60)
 		})
 		this.id2 = system.runInterval(async () => {
+			const spam = await config.modulesDB.get("Spam")
+			if (!spam.data) await config.modulesDB.set("Spam", Object.assign(spam, {
+				data: {
+					messagesIn3Seconds: 5
+				}
+			}))
 			const messageLimit = (await config.modulesDB.get("Spam")).data.messagesIn3Seconds
 			for (const player of world.getAllPlayers()) {
 				if ((this.admin && player.isAdmin()) || player.isOwner()) continue

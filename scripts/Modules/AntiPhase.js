@@ -16,7 +16,9 @@ export default {
 				if ((this.admin && player.isAdmin()) || player.isOwner()) continue
 				const lastLoc = (player.lastLoc ??= player.location)
 				const vel = player.getVelocity()
-				if (player.dimension.getBlock(Vector.lerp(lastLoc, player.location, 0.5)).isSolid() && player.dimension.getBlock(Vector.lerp(Vector.add(lastLoc, Vector.up), Vector.add(player.location, Vector.up), 0.5)).isSolid() && !player.isSwimming) {
+				const topBlock = player.dimension.getBlock(Vector.lerp(Vector.add(lastLoc, Vector.up), Vector.add(player.location, Vector.up), 0.5))
+				const bottomBlock = player.dimension.getBlock(Vector.lerp(lastLoc, player.location, 0.5))
+				if (bottomBlock?.isSolid() && topBlock?.isSolid() && !player.isSwimming) {
 					if (vel.x === 0 && vel.y === 0 && vel.z === 0) continue
 					const test = player.location.y - Math.floor(player.location.y)
 					if (lastLoc.y !== player.location.y || test === 0.5) continue
