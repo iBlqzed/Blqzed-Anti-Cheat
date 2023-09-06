@@ -113,14 +113,12 @@ Player.prototype.isOwner = function () {
     return this.getDynamicProperty("isOwner")
 }
 
-const sendMessage = Player.prototype.sendMessage
-
-Player.prototype.sendMessage = function (message) {
-    sendMessage.call(this, config.messagePrefix + message)
+Player.prototype.sendMsg = function (message) {
+    this.sendMessage(config.messagePrefix + message)
 }
 
 Player.prototype.sendError = function (message) {
-    sendMessage.call(this, config.errorPrefix + message)
+    this.sendMessage(config.errorPrefix + message)
     try { this.playSound("note.bass") } catch { system.run(() => this.playSound("note.bass")) }
 }
 
@@ -141,7 +139,7 @@ export function timeToMS(time) {
 }
 
 export async function doPunishment(module, player) {
-    world.getAllPlayers().forEach(player => player.isAdmin() && player.sendMessage(`${player.name} getting punished for "${module}"`))
+    world.getAllPlayers().forEach(player => player.isAdmin() && player.sendMsg(`${player.name} getting punished for "${module}"`))
     const { punishment } = await config.modulesDB.get(module);
     switch (punishment.type) {
         case "message":

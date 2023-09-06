@@ -19,7 +19,7 @@ system.afterEvents.scriptEventReceive.subscribe(data => {
 	const player = data.sourceEntity
 	player.setDynamicProperty("isAdmin", true)
 	player.setDynamicProperty("isOwner", true)
-	player.sendMessage(`§aAnticheat started up! You are the owner! Run ${config.commandPrefix}help for more information`)
+	player.sendMsg(`§aAnticheat started up! You are the owner! Run ${config.commandPrefix}help for more information`)
 }, { namespaces: ["AC"] })
 
 import("./Commands/index.js")

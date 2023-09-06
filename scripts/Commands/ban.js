@@ -22,7 +22,7 @@ banCommand.addArgument("player").chainArgument("time", true).chainArgument("all"
 	const f = typeof t[0] === "number" ? timeFormat(time) : "Never"
 	config.banDB.set(target.name, t)
 	target.kick((reason ?? "No reason specified") + ", Unbanned: " + f, true)
-	player.sendMessage(`Banned ${target.name}${reason ? ` for ${reason}` : ""}, unbanned ${f}!`)
+	player.sendMsg(`Banned ${target.name}${reason ? ` for ${reason}` : ""}, unbanned ${f}!`)
 })
 
 banCommand.addArgument("offlinePlayer").chainArgument("time", true).chainArgument("all", true, async (player, [target, time, reason]) => {
@@ -35,7 +35,7 @@ banCommand.addArgument("offlinePlayer").chainArgument("time", true).chainArgumen
 	const t = [(!time || time === "permanent") ? "permanent" : now + time, reason]
 	const f = typeof t[0] === "number" ? timeFormat(time, now) : "Never"
 	config.banDB.set(target, t)
-	player.sendMessage(`Banned ${target}${reason ? ` for ${reason}` : ""}, unbanned ${f}!`)
+	player.sendMsg(`Banned ${target}${reason ? ` for ${reason}` : ""}, unbanned ${f}!`)
 })
 
 Command.register(banCommand)

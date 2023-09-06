@@ -22,7 +22,7 @@ muteCommand.addArgument("player").chainArgument("time").chainArgument("all", tru
 	if (reason) target.setDynamicProperty("muteReason", reason)
 	const f = timeFormat(time, now)
 	target.sendError(`You have been muted.${reason ? ` Reason: ${reason}.` : ""} Unmuted: ${f}`)
-	player.sendMessage(`Muted ${target.name}.${reason ? ` Reason: ${reason}.` : ""} Unmuted: ${f}`)
+	player.sendMsg(`Muted ${target.name}.${reason ? ` Reason: ${reason}.` : ""} Unmuted: ${f}`)
 })
 
 Command.register(muteCommand)

@@ -8,6 +8,7 @@ export module "@minecraft/server" {
 		isOwner(): boolean
 		isAdmin(): boolean
 		kick(reason: string, banned?: boolean): void
+		sendMsg(message: string): void
 		sendError(message: string): void
 	}
 }

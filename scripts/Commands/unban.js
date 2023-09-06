@@ -8,9 +8,9 @@ const unbanCommand = new Command({
 })
 
 unbanCommand.addArgument("offlinePlayer", async (player, target) => {
-	if (!await config.banDB.has(target)) return player.sendMessage(`§c${target} is not banned!`)
+	if (!await config.banDB.has(target)) return player.sendError(`${target} is not banned!`)
 	await config.banDB.delete(target)
-	player.sendMessage(`Unbanned ${target}!`)
+	player.sendMsg(`Unbanned ${target}!`)
 })
 
 Command.register(unbanCommand)

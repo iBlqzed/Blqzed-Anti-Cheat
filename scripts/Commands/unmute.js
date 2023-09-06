@@ -10,8 +10,8 @@ unmuteCommand.addArgument("player", async (player, target) => {
 	if (!target.getDynamicProperty("mute")) return player.sendError(`${target.name} was not muted!`)
 	target.removeDynamicProperty("mute")
 	target.removeDynamicProperty("muteReason")
-	player.sendMessage(`You have unmuted ${target.name}!`)
-	target.sendMessage(`§aYou have been unmuted by ${player.name}!`)
+	player.sendMsg(`You have unmuted ${target.name}!`)
+	target.sendMsg(`§aYou have been unmuted by ${player.name}!`)
 })
 
 Command.register(unmuteCommand) 

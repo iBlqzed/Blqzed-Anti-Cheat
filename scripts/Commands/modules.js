@@ -46,16 +46,16 @@ async function showModulePunishmentForm(player, moduleName, mod) {
 	if (index) return forms[index - 1](player, moduleName, mod)
 	switch (mod.punishment.type) {
 		case "message":
-			player.sendMessage(`${moduleName}\nType: Message\nMessage: ${mod.punishment.data.message}`)
+			player.sendMsg(`${moduleName}\nType: Message\nMessage: ${mod.punishment.data.message}`)
 			break
 		case "mute":
-			player.sendMessage(`${moduleName}\nType: Mute\nLength: ${mod.punishment.data.length}\nReason: ${mod.punishment.data.reason}`)
+			player.sendMsg(`${moduleName}\nType: Mute\nLength: ${mod.punishment.data.length}\nReason: ${mod.punishment.data.reason}`)
 			break
 		case "kick":
-			player.sendMessage(`${moduleName}\nType: Kick\nReason: ${mod.punishment.data.reason}`)
+			player.sendMsg(`${moduleName}\nType: Kick\nReason: ${mod.punishment.data.reason}`)
 			break
 		case "ban":
-			player.sendMessage(`${moduleName}\nType: Ban\nLength: ${mod.punishment.data.length}\nReason: ${mod.punishment.data.reason}`)
+			player.sendMsg(`${moduleName}\nType: Ban\nLength: ${mod.punishment.data.length}\nReason: ${mod.punishment.data.reason}`)
 			break
 	}
 }
@@ -69,7 +69,7 @@ async function showModulePunishmentMessageForm(player, moduleName, mod) {
 	mod.punishment.type = "message"
 	mod.punishment.data = { message }
 	await config.modulesDB.set(moduleName, mod)
-	player.sendMessage(`Changed the module's punishment`)
+	player.sendMsg(`Changed the module's punishment`)
 }
 
 async function showModulePunishmentMuteForm(player, moduleName, mod) {
@@ -82,7 +82,7 @@ async function showModulePunishmentMuteForm(player, moduleName, mod) {
 	mod.punishment.type = "mute"
 	mod.punishment.data = { length, reason }
 	await config.modulesDB.set(moduleName, mod)
-	player.sendMessage(`Changed the module's punishment`)
+	player.sendMsg(`Changed the module's punishment`)
 }
 
 async function showModulePunishmentKickForm(player, moduleName, mod) {
@@ -94,7 +94,7 @@ async function showModulePunishmentKickForm(player, moduleName, mod) {
 	mod.punishment.type = "kick"
 	mod.punishment.data = { reason }
 	await config.modulesDB.set(moduleName, mod)
-	player.sendMessage(`Changed the module's punishment`)
+	player.sendMsg(`Changed the module's punishment`)
 }
 
 async function showModulePunishmentBanForm(player, moduleName, mod) {
@@ -107,7 +107,7 @@ async function showModulePunishmentBanForm(player, moduleName, mod) {
 	mod.punishment.type = "ban"
 	mod.punishment.data = { length, reason }
 	await config.modulesDB.set(moduleName, mod)
-	player.sendMessage(`Changed the module's punishment`)
+	player.sendMsg(`Changed the module's punishment`)
 }
 
 async function showModuleDataForm(player, moduleName, mod) {
@@ -145,7 +145,7 @@ async function showModuleDataForm(player, moduleName, mod) {
 		}
 	})
 	await config.modulesDB.set(moduleName, mod)
-	player.sendMessage(`Edited the module data!`)
+	player.sendMsg(`Edited the module data!`)
 }
 
 Command.register(new Command({
@@ -153,7 +153,7 @@ Command.register(new Command({
 	description: "View or edit anticheat modules! Ex: modules",
 	permission: (player) => player.isOwner(),
 	async callback(player) {
-		player.sendMessage("Close chat to see form")
+		player.sendMsg(`Close chat to see the form`)
 		showModulesForm(player)
 	}
 }))

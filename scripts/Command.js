@@ -85,9 +85,9 @@ world.beforeEvents.chatSend.subscribe(ev => {
 	let data = Command.cache[name.toLowerCase()];
 	//@ts-ignore
 	let nextArg = args.shift();
-	if (!data) return player.sendMessage(`§cInvalid command!`);
+	if (!data) return player.sendError(`Invalid command!`);
 	//@ts-ignore
-	if (!data.permission(player)) return player.sendMessage(`§cInvalid command permission!`);
+	if (!data.permission(player)) return player.sendError(`§cInvalid command permission!`);
 	if (data?.callback) system.run(() => data.callback(player, args));
 	const end = () => {
 		const keys = Object.keys(data.subCommands);
@@ -99,14 +99,14 @@ world.beforeEvents.chatSend.subscribe(ev => {
 		};
 		//@ts-ignore
 		const thing = [nextArg, ...args].join(" ");
-		player.sendMessage(`§cInvalid arguments ${thing.length === 0 ? "[Nothing]" : thing}, expected ${[(keys.length === 0 ? undefined : keys.join(", ")), (data.arguments.length === 0 ? undefined : data.arguments.map(v => argthing(v)).join(", "))].filter(v => v).join(" or ")}`);
+		player.sendError(`Invalid arguments ${thing.length === 0 ? "[Nothing]" : thing}, expected ${[(keys.length === 0 ? undefined : keys.join(", ")), (data.arguments.length === 0 ? undefined : data.arguments.map(v => argthing(v)).join(", "))].filter(v => v).join(" or ")}`);
 	};
 	system.run(() => {
 		while (true) {
 			const sub = data.subCommands?.[nextArg ?? ''];
 			if (sub) {
 				if (!sub.permission(player))
-					return player.sendMessage(`§cInvalid sub-command permission for command ${sub.name}!`);
+					return player.sendError(`Invalid sub-command permission for command ${sub.name}!`);
 				data = sub;
 				nextArg = args.shift();
 				continue;
