@@ -84,14 +84,11 @@ world.beforeEvents.chatSend.subscribe(ev => {
 	//@ts-ignore
 	let data = Command.cache[name.toLowerCase()];
 	//@ts-ignore
-	if (data?.callback)
-		system.run(() => data.callback(player, args));
 	let nextArg = args.shift();
-	if (!data)
-		return player.sendMessage(`§cInvalid command!`);
+	if (!data) return player.sendMessage(`§cInvalid command!`);
 	//@ts-ignore
-	if (!data.permission(player))
-		return player.sendMessage(`§cInvalid command permission!`);
+	if (!data.permission(player)) return player.sendMessage(`§cInvalid command permission!`);
+	if (data?.callback) system.run(() => data.callback(player, args));
 	const end = () => {
 		const keys = Object.keys(data.subCommands);
 		const argthing = (arg, prevType = "") => {
@@ -203,7 +200,7 @@ addArgument("time", (nextArg, args) => {
 	let t = parseInt(lower), i = 1, unit = args[0]?.[0]?.toLowerCase();
 	if (isNaN(t)) {
 		i = 0;
-		const v = /^(\d+)\s*(\w+)$/.exec(args[0]);
+		const v = /^(\d+)\s*(\w+)$/.exec(nextArg);
 		if (!v)
 			return;
 		t = parseInt(v[1]);

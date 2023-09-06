@@ -1,4 +1,4 @@
-import { Player, system } from "@minecraft/server"
+import { Player, system, world } from "@minecraft/server"
 import { Database } from "./Database.js"
 
 export const config = {
